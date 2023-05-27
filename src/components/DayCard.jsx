@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
+import useAllowanceStore from "../store/useAllowanceStore";
 
 function DayCard({ no, limit }) {
   const [show, setShow] = useState(true);
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({ title: "", expense: 0 });
   const [totalExpense, setTotalExpense] = useState(0);
+  const { allowance, setAllowance } = useAllowanceStore();
 
   const addEvent = () => {
     setEvents([...events, newEvent]);
     setNewEvent({ title: "", expense: 0 });
     setShow(false);
   };
+
+  useEffect(() => {
+    setAllowance(allowance - totalExpense);
+  }, [totalExpense]);
 
   useEffect(() => {
     let total = 0;

@@ -26,6 +26,11 @@ function App() {
     setLimit(allowance / 30);
   };
 
+  
+  useEffect(() => {
+    setLimit(allowance / 30);
+  }, [allowance]);
+
   return (
     <>
       <Input calc={calcLimit}></Input>
