@@ -6,9 +6,16 @@ function App() {
 
   const {allowance, setAllowance} = useAllowanceStore();
 
-  const handleSubmit = event => {
+  const [limit, setLimit] = useState(0);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
+    calcLimit();
   };
+
+  function calcLimit(){
+    setLimit(allowance/30);
+  }
 
   return (
     <>
@@ -23,6 +30,7 @@ function App() {
       </label>
       <button type="submit">Submit</button>
     </form>
+    <h1 className="text-blue-200">{limit}</h1>
     </>
   );
 }
