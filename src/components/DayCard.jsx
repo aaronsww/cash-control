@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function DayCard({ no, limit }) {
   const [show, setShow] = useState(true);
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({ title: "", expense: 0 });
+  const [totalExpense, setTotalExpense] = useState(0);
 
   const addEvent = () => {
     setEvents([...events, newEvent]);
     setNewEvent({ title: "", expense: 0 });
     setShow(false);
   };
+
+  useEffect(() => {
+    let total = 0;
+    events.forEach((event) => {
+      total += event.expense;
+    });
+    setTotalExpense(total);
+  }, [events]);
 
   return (
     <div className="w-40 m-5">
@@ -21,6 +30,7 @@ function DayCard({ no, limit }) {
           <h4>{event.expense}</h4>
         </div>
       ))}
+      <h3>Total Expense: {totalExpense}</h3>
       {show && <button onClick={() => setShow(false)}>Add Event</button>}
       {!show && (
         <div>
@@ -35,7 +45,7 @@ function DayCard({ no, limit }) {
             type="number"
             value={newEvent.expense}
             onChange={(e) =>
-              setNewEvent({ ...newEvent, expense: e.target.value })
+              setNewEvent({ ...newEvent, expense: parseInt(e.target.value) })
             }
           />
           <button onClick={addEvent}>Add</button>
