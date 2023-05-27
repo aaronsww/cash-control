@@ -5,37 +5,32 @@ import useAllowanceStore from "./store/useAllowanceStore";
 import DayCard from "./components/DayCard";
 
 function App() {
-  const { allowance,  limit, setLimit  } = useAllowanceStore();
-  // const [limit, setLimit] = useState(0);
+  const { allowance, limit, setLimit } = useAllowanceStore();
 
   const renderDays = () => {
     const days = [];
     for (let i = 1; i <= 30; i++) {
-      days.push(
-        <DayCard
-          key={i}
-          no={i}
-        />
-      );
+      days.push(<DayCard key={i} no={i} />);
     }
     return days;
   };
 
   const calcLimit = () => {
-    setLimit(allowance / 30);
+    setLimit(Math.round(allowance / 30));
   };
 
-  
   useEffect(() => {
-    setLimit(allowance / 30);
+    setLimit(Math.round(allowance / 30));
   }, [allowance]);
 
   return (
-    <>
-      <Input calc={calcLimit}></Input>
-      <div>Daily Limit: {limit}</div>
-      <div className="flex flex-wrap  ">{renderDays()}</div>
-    </>
+    <div className="mx-auto px-4 py-8">
+      <Input calc={calcLimit} />
+      <div className="text-xl font-bold ml-2 mb-4 text-start">
+        Daily Limit: ₹{limit}
+      </div>
+      <div className="flex flex-wrap -mx-4">{renderDays()}</div>
+    </div>
   );
 }
 
