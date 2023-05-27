@@ -5,8 +5,8 @@ import useAllowanceStore from "./store/useAllowanceStore";
 import DayCard from "./components/DayCard";
 
 function App() {
-  const { allowance } = useAllowanceStore();
-  const [limit, setLimit] = useState(0);
+  const { allowance,  limit, setLimit  } = useAllowanceStore();
+  // const [limit, setLimit] = useState(0);
 
   const renderDays = () => {
     const days = [];
@@ -15,7 +15,6 @@ function App() {
         <DayCard
           key={i}
           no={i}
-          limit={limit}
         />
       );
     }
@@ -34,7 +33,8 @@ function App() {
   return (
     <>
       <Input calc={calcLimit}></Input>
-      <div className="flex">{renderDays()}</div>
+      <div>Daily Limit: {limit}</div>
+      <div className="flex flex-wrap  ">{renderDays()}</div>
     </>
   );
 }

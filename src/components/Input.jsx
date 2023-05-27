@@ -20,7 +20,7 @@ function Input({ calc }) {
             onChange={(e) => setAllowance(e.target.value)}
           />
         </label>
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
     </div>
   );
