@@ -12,7 +12,7 @@ function Input({ calc }) {
   return (
     <div className="my-5">
       <form onSubmit={handleSubmit} className="flex items-center">
-        <label className="mr-4 text-xl font-bold ml-2">
+        <label className="mr-4 text-xl font-bold ml-2 flex items-center">
           Monthly Allowance:
           <input
             type="number"

@@ -32,13 +32,18 @@ function App() {
       </div>
       <button
         className="font-bold"
-        onClick={() => setToggle((prevToggle) => !prevToggle)}
+        onClick={(e) => {
+          e.preventDefault;
+          setToggle((prevToggle) => !prevToggle);
+        }}
       >
         {" "}
         {toggle ? "Minimize Calendar" : "Expand Calendar"}
       </button>
       {toggle && <div className="flex flex-wrap ">{renderDays()}</div>}
-      <div className="flex justify-center">{!toggle && <div className="flex flex-wrap w-1/2">{renderDays()}</div>}</div>
+      <div className="flex justify-center">
+        {!toggle && <div className="flex flex-wrap w-1/2">{renderDays()}</div>}
+      </div>
     </div>
   );
 }

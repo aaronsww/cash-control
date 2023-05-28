@@ -32,7 +32,9 @@ function DayCard({ no, toggle }) {
     <div>
       {toggle && (
         <div
-          className={`bg-${events.length > 0 ? "blue-200" : "white"} rounded-lg shadow-lg p-4 m-5`}
+          className={`rounded-lg shadow-lg p-4 m-5 ${
+            events.length > 0 ? "bg-blue-100" : "bg-white"
+          }`}
         >
           <h1 className="text-2xl font-bold ml-3 mb-2 text-start">{no}</h1>
           {events.map((event, index) => (
@@ -89,9 +91,12 @@ function DayCard({ no, toggle }) {
         </div>
       )}
       {!toggle && (
-        <div className="rounded-lg shadow-xl flex flex-col items-center justify-center m-2 h-14 w-14 font-extrabold">
+        <div
+          className={`rounded-lg shadow-xl flex flex-col items-center justify-center m-2 h-14 w-14 font-extrabold ${
+            totalExpense > 0 ? "bg-blue-500" : "bg-red-500"
+          }`}
+        >
           {no}
-          {events.length > 0 && <div className="bg-red-500 w-2 h-2 rounded-full"></div>}
         </div>
       )}
     </div>
